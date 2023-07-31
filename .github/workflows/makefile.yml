@@ -21,8 +21,11 @@ jobs:
     - name: Set ZOS_PATH environment variable
       run: echo "ZOS_PATH=$(pwd)/Zeal-8-bit-OS" >> $GITHUB_ENV
 
+    - name: Update apt
+      run: sudo apt update
+
     - name: Install sdcc
-      run: sudo apt install sdcc
+      run: sudo apt install sdcc=4.3.0
 
     - name: Run make
       run: make
