@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: clone
+      run: git clone https://github.com/Zeal8bit/Zeal-8-bit-OS.git
+      
+    - name: export
+      run: export ZOS_PATH="$(pwd)/Zeal-8-bit-OS"
+
+    - name: Install dependencies
+      run: sudo apt install sdcc
+
+    - name: Run make
+      run: make
