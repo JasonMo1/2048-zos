@@ -12,15 +12,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: clone
-      run: git clone https://github.com/Zeal8bit/Zeal-8-bit-OS.git
-      
-    - name: export
-      run: export ZOS_PATH="$(pwd)/Zeal-8-bit-OS"
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-    - name: Install dependencies
+    - name: Clone Zeal-8-bit-OS repository
+      run: git clone https://github.com/Zeal8bit/Zeal-8-bit-OS.git
+
+    - name: Set ZOS_PATH environment variable
+      run: echo "ZOS_PATH=$(pwd)/Zeal-8-bit-OS" >> $GITHUB_ENV
+
+    - name: Install sdcc
       run: sudo apt install sdcc
 
     - name: Run make
